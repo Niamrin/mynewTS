@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивный хедер с выпадающим меню</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="#" class="logo">Logo</a>
+                
+                <!-- Бургер-меню (для мобилок) -->
+                <button class="burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Основное меню -->
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <!-- 1-я кнопка с выпадающим меню -->
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Главная <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown__menu">
+                                <li><a href="#">Подпункт 1</a></li>
+                                <li><a href="#">Подпункт 2</a></li>
+                                <li><a href="#">Подпункт 343232</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- 2-я кнопка -->
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Услуги <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown__menu">
+                                <li><a href="#">Услуга 1</a></li>
+                                <li><a href="#">Услуга 2</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- 3-я кнопка -->
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Продукция <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown__menu">
+                                <li><a href="#">Товар 1</a></li>
+                                <li><a href="#">Товар 2</a></li>
+                                <li><a href="#">Товар 3</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Остальные 5 кнопок (аналогично) -->
+                        <li class="nav__item"><a href="#" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Контакты</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Блог</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">FAQ</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Партнеры</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- chunks/breadcrumbs.tpl -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                [[+breadcrumbs]]
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- chunks/product-card.tpl -->
+<div class="product-card">
+    <div class="container">
+        <div class="product__inner">
+            <!-- Галерея товара -->
+            <div class="product__gallery">
+                <div class="product__main-img">
+                    <img src="[[+pthumb]]" alt="[[+pagetitle]]" id="main-product-img">
+                </div>
+                <div class="product__thumbnails">
+                    [[+thumbs]]
+                </div>
+            </div>
+
+            <!-- Информация о товаре -->
+            <div class="product__info">
+                <h1>[[+pagetitle]]</h1>
+                <div class="product__meta">
+                    <span class="product__sku">Артикул: [[+sku]]</span>
+                    <span class="product__stock">[[+stock]]</span>
+                </div>
+
+                <div class="product__price">
+                    <span class="price">[[+price]] ₽</span>
+                    [[+old_price:notempty=`<span class="old-price">[[+old_price]] ₽</span>`]]
+                </div>
+
+                <div class="product__actions">
+                    <div class="qty-selector">
+                        <button class="qty-minus">−</button>
+                        <input type="number" value="1" min="1">
+                        <button class="qty-plus">+</button>
+                    </div>
+                    <button class="btn btn--primary">В корзину</button>
+                </div>
+
+                <!-- Описание -->
+                <div class="product__description">
+                    <h3>Описание</h3>
+                    [[+content]]
+                </div>
+
+                <!-- Характеристики -->
+                <div class="product__specs">
+                    <h3>Характеристики</h3>
+                    <table>
+                        [[+specs]]
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- chunks/advantages.tpl -->
+<section class="advantages">
+    <div class="container">
+        <h2 class="section-title">[[+title:default=`Наши преимущества`]]</h2>
+        <div class="advantages__grid">
+            <!-- Преимущество 1 -->
+            <div class="advantage">
+                <div class="advantage__icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3 class="advantage__title">[[+advantage1_title:default=`Быстрая доставка`]]</h3>
+                <p class="advantage__desc">[[+advantage1_desc:default=`Отправка заказов в день оформления`]]</p>
+            </div>
+            
+            <!-- Преимущество 2 -->
+            <div class="advantage">
+                <div class="advantage__icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="advantage__title">[[+advantage2_title:default=`Гарантия качества`]]</h3>
+                <p class="advantage__desc">[[+advantage2_desc:default=`Официальная гарантия на все товары`]]</p>
+            </div>
+            
+            <!-- Преимущество 3 -->
+            <div class="advantage">
+                <div class="advantage__icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="advantage__title">[[+advantage3_title:default=`Поддержка 24/7`]]</h3>
+                <p class="advantage__desc">[[+advantage3_desc:default=`Консультации по любым вопросам`]]</p>
+            </div>
+            
+            <!-- Преимущество 4 -->
+            <div class="advantage">
+                <div class="advantage__icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <h3 class="advantage__title">[[+advantage4_title:default=`Скидки и бонусы`]]</h3>
+                <p class="advantage__desc">[[+advantage4_desc:default=`Программа лояльности для клиентов`]]</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- chunks/related-products.tpl -->
+<div class="related-products">
+    <div class="container">
+        <h2>Похожие товары</h2>
+        <div class="related__grid">
+            [[+items]]
+        </div>
+    </div>
+</div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <!-- Блок "О компании" -->
+                <div class="footer__col">
+                    <h3 class="footer__title">О компании</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+
+                <!-- Блок "Контакты" -->
+                <div class="footer__col">
+                    <h3 class="footer__title">Контакты</h3>
+                    <ul class="footer__list">
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Примерная, 123</li>
+                        <li><i class="fas fa-phone"></i> +7 (123) 456-78-90</li>
+                        <li><i class="fas fa-envelope"></i> info@example.com</li>
+                    </ul>
+                </div>
+
+                <!-- Блок "Соцсети" -->
+                <div class="footer__col">
+                    <h3 class="footer__title">Соцсети</h3>
+                    <div class="footer__social">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Блок "Подписка" -->
+                <div class="footer__col">
+                    <h3 class="footer__title">Подписаться на новости</h3>
+                    <form class="footer__subscribe">
+                        <input type="email" placeholder="Ваш email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="footer__copyright">
+                <p>&copy; 2024 Название компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
